@@ -50,7 +50,7 @@ This project is a React-based web application that provides interactive visualiz
 Ensure the backend APIs are running and accessible for the app to function correctly.
 
 
-# Caching
+## Caching
 
 The application uses React Query for efficient data fetching and caching. The following caching strategies are implemented:
 
