@@ -1,0 +1,44 @@
+name: CI/CD Pipeline for SpaceX Dashboard
+
+on:
+  push:
+    branches:
+      - main # Trigger workflow on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18 # Use the Node.js version your app requires
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Build the app
+    - name: Build the app
+      run: npm run build
+
+    # Step 5: Deploy to EC2
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /path/to/your/app
+          git pull origin main
+          npm install
+          npm run build
+          pm2 restart all
