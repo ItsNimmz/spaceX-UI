@@ -13,7 +13,7 @@ export default function VisualizationPage({ onBack }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/launches/stats')
+        const response = await axios.get('https://spacex-rxo2.onrender.com/api/launches/stats')
         setStats(response.data)
       } catch (error) {
         console.error('Error fetching data:', error)
