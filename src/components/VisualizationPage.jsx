@@ -5,24 +5,28 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
   ResponsiveContainer, ComposedChart 
 } from 'recharts'
+import { useQuery } from '@tanstack/react-query';
 
 export default function VisualizationPage({ onBack }) {
-  const [stats, setStats] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const fetchStats = async () => {
+    const response = await axios.get('https://spacex-rxo2.onrender.com/api/launches/stats');
+    return response.data;
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://spacex-rxo2.onrender.com/api/launches/stats')
-        setStats(response.data)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
+  const { data: stats, isLoading, isError } = useQuery({
+    queryKey: ['launchStats'], 
+    queryFn: fetchStats,      
+    staleTime: Infinity,  
+    cacheTime: Infinity, 
+  });
+
+  if (isLoading) {
+    return <div className="loading">Loading data...</div>;
+  }
+
+  if (isError) {
+    return <div className="error">Error fetching data. Please try again later.</div>;
+  }
 
   return (
     <div className="page-container">
@@ -32,7 +36,7 @@ export default function VisualizationPage({ onBack }) {
       
       <h2>Launch Visualizations</h2>
       
-      {loading ? (
+      {isLoading ? (
         <div className="loading">Loading data...</div>
       ) : (
         <div className="visualization-grid">
