@@ -58,7 +58,7 @@ Ensure the backend APIs are running and accessible for the app to function corre
 - **Metrics Page**: Key performance metrics such as:
   - Total launches
   - Launch frequencies per year
-- **Responsive Design**: Optimized for desktop and mobile devices.
+
 - **Caching**: Data fetched from the API is cached using React Query with `staleTime` and `cacheTime` set to `Infinity`, ensuring efficient data reuse and reducing unnecessary API calls.
 
 ## Screenshots
@@ -70,7 +70,7 @@ Ensure the backend APIs are running and accessible for the app to function corre
 ![Visualization Page](./screenshots/launch.png)
 
 ### Metrics Page
-![Metrics Page](./screenshots/landing.png)
+![Metrics Page](./screenshots/metrix.png)
 
 ## Caching
 
