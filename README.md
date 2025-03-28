@@ -67,7 +67,7 @@ Ensure the backend APIs are running and accessible for the app to function corre
 ![Landing Page](./screenshots/landing.png)
 
 ### Visualization Page
-![Visualization Page](./screenshots/visualization.png)
+![Visualization Page](./screenshots/launch.png)
 
 ### Metrics Page
 ![Metrics Page](./screenshots/landing.png)
