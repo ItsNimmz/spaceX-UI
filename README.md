@@ -49,6 +49,28 @@ This project is a React-based web application that provides interactive visualiz
 
 Ensure the backend APIs are running and accessible for the app to function correctly.
 
+## Features
+
+- **Landing Page**: Overview of the application with navigation options.
+- **Visualization Page**: Interactive charts displaying SpaceX launch data, including:
+  - Launches per year
+  - Rocket statistics (total launches and payload weight)
+- **Metrics Page**: Key performance metrics such as:
+  - Total launches
+  - Launch frequencies per year
+- **Responsive Design**: Optimized for desktop and mobile devices.
+- **Caching**: Data fetched from the API is cached using React Query with `staleTime` and `cacheTime` set to `Infinity`, ensuring efficient data reuse and reducing unnecessary API calls.
+
+## Screenshots
+
+### Landing Page
+![Landing Page](./screenshots/landing.png)
+
+### Visualization Page
+![Visualization Page](./screenshots/visualization.png)
+
+### Metrics Page
+![Metrics Page](./screenshots/landing.png)
 
 ## Caching
 
