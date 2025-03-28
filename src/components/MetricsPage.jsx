@@ -8,17 +8,24 @@ export default function MetricsPage({ onBack }) {
   const [error, setError] = useState(null);  
   
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/api/metrix')  
-      .then((response) => {
-        setLaunchData(response.data);  
-        setLoading(false);  
-      })
-      .catch((err) => {
-        console.error('Error fetching data:', err);
-        setError('Failed to load data');
-        setLoading(false);  
-      });
+    const cachedData = localStorage.getItem('launchData');
+    if (cachedData) {
+      setLaunchData(JSON.parse(cachedData));
+      setLoading(false);
+    } else {
+      axios
+        .get('http://localhost:5000/api/metrix')  
+        .then((response) => {
+          setLaunchData(response.data);  
+          localStorage.setItem('launchData', JSON.stringify(response.data)); 
+          setLoading(false);  
+        })
+        .catch((err) => {
+          console.error('Error fetching data:', err);
+          setError('Failed to load data');
+          setLoading(false);  
+        });
+    }
   }, []);
 
   
