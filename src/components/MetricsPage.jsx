@@ -14,7 +14,7 @@ export default function MetricsPage({ onBack }) {
       setLoading(false);
     } else {
       axios
-        .get('https://spacex-rxo2.onrender.com/api/launches/stats')  
+        .get('https://spacex-rxo2.onrender.com/api/metrix')  
         .then((response) => {
           setLaunchData(response.data);  
           localStorage.setItem('launchData', JSON.stringify(response.data)); 
